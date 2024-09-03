@@ -56,6 +56,7 @@ function App() {
       toast('Please enter this field!');
       return;
     }
+    setSearch("")
     setPages(1);
     setUser([]);
     getImages();
