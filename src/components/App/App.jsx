@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import './App.css'
 import toast, { Toaster } from 'react-hot-toast';
 import SearchBar from '../SearchBar/SearchBar'
-import {fetchImages} from '/Users/Администратор/Documents/GitHub/goit-react-hw-04/src/services/images'
+import {fetchImages} from './images'
 import ImageGallery from "../ImageGallery/ImageGallery";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn"
 import ImageModal from "../ImageModal/ImageModal"
