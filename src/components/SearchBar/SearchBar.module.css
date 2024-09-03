@@ -1,0 +1,36 @@
+.SearchBar{
+  background-color: rgb(67, 67, 202);
+  width: 500px;
+  height: 40px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.SearchBarForm{
+  display: flex;
+  gap: 95%;
+}
+.SearchBarInput{
+  height: 20px;
+}
+.SearchBarButton{
+  height: 26px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+@media screen and (max-width:603px) {
+  .SearchBar{
+   width: 280px;
+   height: 30px;
+  }
+  .SearchBarInput{
+    width:100px;
+  }
+  .SearchBarForm{
+    gap: 50%;
+  }
+
+}
