@@ -16,6 +16,7 @@ export default function SearchBar({value, onChange, onSubmit}){
           onSubmit(event); 
         }}>
     <input
+      name="search"
       className={clsx(css.SearchBarInput)}
       value={value}
       onChange={onChange}
