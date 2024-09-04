@@ -2,13 +2,13 @@ import React from "react";
 import ImageCard from "../ImageCard/ImageCard";
 import css from './ImageGallery.module.css'
 import clsx from 'clsx';
-export default function ImageGallery({user,onImageClick}){
+export default function ImageGallery({images,onImageClick}){
     return(
       <div className={clsx(css.imageGallery)}>
             <ul className={clsx(css.imageList)}>
-               {user.map((image)=>(
+               {images.map((image)=>(
                  <li className={clsx(css.imageListElement)} key={image.id}>
-                   <ImageCard onImageClick={onImageClick} user={image}/>
+                   <ImageCard onImageClick={onImageClick} images={image}/>
                 </li>
   ))}
             </ul>

@@ -1,7 +1,6 @@
 import React from "react"
 import { useEffect, useState } from "react";
 import './App.css'
-import toast, { Toaster } from 'react-hot-toast';
 import SearchBar from '../SearchBar/SearchBar'
 import {fetchImages} from './images'
 import ImageGallery from "../ImageGallery/ImageGallery";
@@ -10,11 +9,12 @@ import ImageModal from "../ImageModal/ImageModal"
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
 import Modal from 'react-modal'; 
 import Loader from "../Loader/Loader"
+import toast, { Toaster } from 'react-hot-toast';
 
 Modal.setAppElement('#root');
 function App() {
   const [search, setSearch]=useState("");
-  const [user,setUser]=useState([]);
+  const [images,setImages]=useState([]);
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false)
   const [error, setError] = useState(false);
@@ -32,7 +32,7 @@ function App() {
       setLoading2(false);
       setError(false);
       const {results,totalPages}=await fetchImages(search,page);
-      setUser((prevState)=>[...prevState, ...results]);
+      setImages((prevState)=>[...prevState, ...results]);
       setTotalPages(totalPages);
      }
      catch(error){
@@ -46,19 +46,14 @@ function App() {
     if (search.trim()==="") {
       return;
     }
-    getImages()
-  },[page])
+  },[page,search])
 
 
   const handleSubmit=(event)=>{
     event.preventDefault();
-    if (search.trim()===""){
-      toast('Please enter this field!');
-      return;
-    }
     setSearch("")
     setPages(1);
-    setUser([]);
+    setImages([]);
     getImages();
   }
   const changePages=()=>{
@@ -73,12 +68,12 @@ function App() {
 
   return (
     <>
-      <Toaster />
+      <Toaster/>
       <SearchBar onSubmit={handleSubmit} value={search} onChange={onChange} />
       {error&&<ErrorMessage/>}
-      {user.length>0&&<ImageGallery onImageClick={(image) => setSelectedImage(image)} user={user}/>}
+      {images.length>0&&<ImageGallery onImageClick={(image) => setSelectedImage(image)} images={images}/>}
       {loading&& <Loader/>}
-      {user.length>0&&!loading&&<LoadMoreBtn changePages={changePages} />}
+      {images.length>0&&!loading&&<LoadMoreBtn changePages={changePages} />}
       {loading2&&<Loader/>}
       {selectedImage && (
         <ImageModal

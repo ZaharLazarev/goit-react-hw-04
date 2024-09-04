@@ -1,10 +1,20 @@
 import React from "react"
+import toast, { Toaster } from 'react-hot-toast';
 import css from "./SearchBar.module.css"
 import clsx from "clsx"
 export default function SearchBar({value, onChange, onSubmit}){
   return(
 <header className={clsx(css.SearchBar)}>
-  <form className={clsx(css.SearchBarForm)} onSubmit={onSubmit}>
+  <Toaster/>
+  <form className={clsx(css.SearchBarForm)} 
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (value.trim() === "") {
+            toast('Please enter this field!');
+            return;
+          }
+          onSubmit(event); 
+        }}>
     <input
       className={clsx(css.SearchBarInput)}
       value={value}
